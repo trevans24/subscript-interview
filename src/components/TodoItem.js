@@ -7,8 +7,13 @@ const completedStyle = {
   textDecoration: "line-through",
 }
 
+const containerStyle = {
+  display: "flex",
+  gap: "4px",
+}
+
 const TodoItem = ({ deleteTodoProps, handleChangeProps, todo }) => {
-  const { completed, id, title } = todo
+  const { completed, id, title, tags } = todo
 
   return (
     <li className="todo-item">
@@ -19,6 +24,11 @@ const TodoItem = ({ deleteTodoProps, handleChangeProps, todo }) => {
       />
       <button onClick={() => deleteTodoProps(id)}>Delete</button>
       <span style={completed ? completedStyle : null}>{title}</span>
+      <div style={containerStyle}>
+        {tags.map((tag) => (
+          <span style={{ display: "block" }}>{tag}</span>
+        ))}
+      </div>
     </li>
   )
 }

@@ -9,18 +9,21 @@ const baseTodos = [
   {
     // id: uuid.v4(),
     id: uuidv4(),
+    tags: ["bug"],
     title: "Setup development environment",
     completed: true,
   },
   {
     // id: uuid.v4(),
     id: uuidv4(),
+    tags: ["feature"],
     title: "Develop website and add content",
     completed: false,
   },
   {
     // id: uuid.v4(),
     id: uuidv4(),
+    tags: ["high priority"],
     title: "Deploy to live server",
     completed: false,
   },
@@ -59,11 +62,12 @@ const TodoContainer = () => {
     })
   }
 
-  const addTodoItem = (title) => {
+  const addTodoItem = ({ title, tags }) => {
     const newTodo = {
       // id: uuid.v4(),
       id: uuidv4(),
-      title: title,
+      tags,
+      title,
       completed: false,
     }
     dispatch({ type: "ADD_TODO", payload: [...todos, newTodo] })
