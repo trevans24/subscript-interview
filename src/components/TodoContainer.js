@@ -54,12 +54,9 @@ const TodoContainer = () => {
   }
 
   const delTodo = (id) => {
-    this.setState({
-      todos: [
-        ...this.state.todos.filter((todo) => {
-          return todo.id !== id
-        }),
-      ],
+    dispatch({
+      type: "DELETE_TODO",
+      payload: [...todos.filter((todo) => todo.id !== id)],
     })
   }
 
