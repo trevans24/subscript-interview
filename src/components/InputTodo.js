@@ -27,7 +27,7 @@ const InputTodo = ({ addTodoProps }) => {
   return (
     <form onSubmit={handleSubmit} className="form-container">
       <input
-        className="input-text"
+        className="input-text input-title"
         name="title"
         onChange={onChange}
         placeholder="Add todo..."
@@ -35,7 +35,7 @@ const InputTodo = ({ addTodoProps }) => {
         value={title}
       />
       <input
-        className="input-text"
+        className="input-text input-tags"
         name="tag"
         onKeyDown={handleKeyDown}
         placeholder="Add Tags (press Enter to add)"
