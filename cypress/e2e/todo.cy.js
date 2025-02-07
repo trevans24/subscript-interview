@@ -7,6 +7,7 @@ describe("example to-do app", () => {
   })
   // Actions of application
   // Add todo
+  // tags
   it("should add a new todo", () => {
     // make sure there are 3 todos
     const todos = cy.get(".todo-item")
@@ -26,7 +27,16 @@ describe("example to-do app", () => {
     // make sure there are now 4 todos
     cy.wait(500).get(".todo-item").should("have.length", 4)
   })
-  // tags
   // update todo
+  it("should update a todo when clicking on checkbox", () => {
+    // make sure first todo is checked
+    // grab checkbox
+    const checkbox = cy.get(".todo-item > input").first()
+    checkbox.should("be.checked")
+    // click on checkbox to update state
+    checkbox.click()
+    // make sure the checkbox changed state
+    cy.wait(500).get(".todo-item > input").first().should("not.be.checked")
+  })
   // delete todo
 })
