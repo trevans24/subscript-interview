@@ -1,21 +1,19 @@
-import React from "react";
-import TodoItem from "./TodoItem";
+import React from "react"
+import TodoItem from "./TodoItem"
 
-class TodosList extends React.Component {
-  render() {
-    return (
-      <div>
-        {this.props.todos.map(todo => (
-          <TodoItem
-            key={todo.id}
-            todo={todo}
-            handleChangeProps={this.props.handleChangeProps}
-            deleteTodoProps={this.props.deleteTodoProps}
-          />
-        ))}
-      </div>
-    );
-  }
+const TodosList = ({ deleteTodoProps, handleChangeProps, todos }) => {
+  return (
+    <div>
+      {todos.map((todo) => (
+        <TodoItem
+          deleteTodoProps={deleteTodoProps}
+          handleChangeProps={handleChangeProps}
+          key={todo.id}
+          todo={todo}
+        />
+      ))}
+    </div>
+  )
 }
 
-export default TodosList;
+export default TodosList
