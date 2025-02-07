@@ -39,4 +39,16 @@ describe("example to-do app", () => {
     cy.wait(500).get(".todo-item > input").first().should("not.be.checked")
   })
   // delete todo
+  it("should delete a todo when clicking delete button", () => {
+    // make sure there are 3 todos
+    const todos = cy.get(".todo-item")
+    todos.should("have.length", 3)
+    // grab the first todo
+    const deleteBtn = cy.get(".delete-button").first()
+    // find the delete button
+    // click delete button
+    deleteBtn.click()
+    // check and make sure there are 2 todos
+    cy.wait(500).get(".todo-item").should("have.length", 2)
+  })
 })

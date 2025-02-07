@@ -24,7 +24,9 @@ const TodoItem = React.memo(({ deleteTodoProps, handleChangeProps, todo }) => {
   return (
     <li className="todo-item">
       <input type="checkbox" checked={completed} onChange={handleChange} />
-      <button onClick={handleDelete}>Delete</button>
+      <button className="delete-button" onClick={handleDelete}>
+        Delete
+      </button>
       <span style={completed ? completedStyle : null}>{title}</span>
       <div style={containerStyle}>
         {tags.map((tag) => (
