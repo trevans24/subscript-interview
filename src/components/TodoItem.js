@@ -29,8 +29,14 @@ const TodoItem = React.memo(({ deleteTodoProps, handleChangeProps, todo }) => {
       </button>
       <span style={completed ? completedStyle : null}>{title}</span>
       <div style={containerStyle}>
-        {tags.map((tag) => (
-          <span style={{ display: "block" }}>{tag}</span>
+        {tags.map((tag, i) => (
+          <span
+            className={`tag-${title}-${i}`}
+            key={tag}
+            style={{ display: "block" }}
+          >
+            {tag}
+          </span>
         ))}
       </div>
     </li>

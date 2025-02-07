@@ -15,7 +15,7 @@ describe("example to-do app", () => {
     // find the input for title
     const titleInput = cy.get(".input-title")
     // type in title input
-    titleInput.type("Add Testing")
+    titleInput.type("Testing")
     // find the input for tags
     const tagInput = cy.get(".input-tags")
     // type in tag input, hit enter
@@ -26,6 +26,8 @@ describe("example to-do app", () => {
     submitBtn.click()
     // make sure there are now 4 todos
     cy.wait(500).get(".todo-item").should("have.length", 4)
+    const tag = cy.get(".tag-Testing-0")
+    tag.should("exist").contains("high priority")
   })
   // update todo
   it("should update a todo when clicking on checkbox", () => {
