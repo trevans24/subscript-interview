@@ -43,14 +43,13 @@ const TodoContainer = () => {
   const [todos, dispatch] = useReducer(todoReducer, baseTodos)
 
   const handleChange = (id) => {
-    this.setState({
-      todos: this.state.todos.map((todo) => {
-        if (todo.id === id) {
-          todo.completed = !todo.completed
-        }
-        return todo
-      }),
+    const updatedTodo = todos.map((todo) => {
+      if (todo.id === id) {
+        todo.completed = !todo.completed
+      }
+      return todo
     })
+    dispatch({ type: "TOGGLE_TODO", payload: updatedTodo })
   }
 
   const delTodo = (id) => {
