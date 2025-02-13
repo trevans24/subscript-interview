@@ -64,4 +64,33 @@ describe("example to-do app", () => {
     // check for 2 todos
     cy.wait(500).get(".todo-item").should("have.length", 2)
   })
+  it("should sort todos on click of sort button", () => {
+    // make sure there are 3 todos
+    const todos = cy.get(".todo-item")
+    todos.should("have.length", 3)
+    // grab the last one
+    const lastTodo = cy.get(".todo-item").last()
+    const label = lastTodo.find("span").first()
+    label.should("have.text", "Deploy to live server")
+    // find sort button
+    const sortBtn = cy.get(".sort-btn")
+    // click sort button
+    sortBtn.click()
+    // check if ascending
+    // make sure in ascending order
+    cy.get(".todo-item > span").then((el) => {
+      const strings = el.map((inner) => inner)
+      cy.wrap(strings).should("equal", strings.sort())
+    })
+    // click button again
+    sortBtn.click()
+    // check against descending order
+    cy.get(".todo-item > span").then((el) => {
+      const strings = el.map((inner) => inner)
+      cy.wrap(strings).should(
+        "equal",
+        strings.sort((a, b) => b - a)
+      )
+    })
+  })
 })
