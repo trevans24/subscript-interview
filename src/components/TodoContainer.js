@@ -78,7 +78,12 @@ const TodoContainer = () => {
 
   // Sort and filter
   const handleFilter = () => setIsFiltered(!isFiltered)
-  const handleSort = () => console.log("sort")
+  const handleSort = () => {
+    if (sortDir === "asc") {
+      return setSortDir("dsc")
+    }
+    return setSortDir("asc")
+  }
 
   const filteredTodos = useMemo(
     () => (isFiltered ? todos.filter(({ completed }) => !completed) : todos),
