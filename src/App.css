@@ -52,7 +52,8 @@ body {
 .todo-item input {
   margin-right: 15px;
 }
-.todo-item button {
+.todo-item button,
+button {
   background: #d35e0f;
   color: #fff;
   border: 1px solid #d35e0f;

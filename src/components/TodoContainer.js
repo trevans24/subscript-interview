@@ -1,9 +1,10 @@
-import React, { useReducer } from "react"
+import React, { useMemo, useState, useReducer } from "react"
 import TodosList from "./TodosList"
 import Header from "./Header"
 import InputTodo from "./InputTodo"
 // import uuid from "uuid";
 import { v4 as uuidv4 } from "uuid"
+import FilterSortBar from "./FilterSortBar"
 
 const baseTodos = [
   {
@@ -44,6 +45,8 @@ const todoReducer = (state, action) => {
 
 const TodoContainer = () => {
   const [todos, dispatch] = useReducer(todoReducer, baseTodos)
+  const [isFiltered, setIsFiltered] = useState(false)
+  const [sortDir, setSortDir] = useState("")
 
   const handleChange = (id) => {
     const updatedTodo = todos.map((todo) => {
@@ -73,14 +76,29 @@ const TodoContainer = () => {
     dispatch({ type: "ADD_TODO", payload: [...todos, newTodo] })
   }
 
+  // Sort and filter
+  const handleFilter = () => setIsFiltered(!isFiltered)
+  const handleSort = () => console.log("sort")
+
+  const filteredTodos = useMemo(
+    () => (isFiltered ? todos.filter(({ completed }) => !completed) : todos),
+    [isFiltered, todos]
+  )
+
   return (
     <div className="container">
       <Header />
       <InputTodo addTodoProps={addTodoItem} />
+      <FilterSortBar
+        handleFilter={handleFilter}
+        handleSort={handleSort}
+        isFiltered={isFiltered}
+        sortDir={sortDir}
+      />
       <TodosList
         deleteTodoProps={delTodo}
         handleChangeProps={handleChange}
-        todos={todos}
+        todos={filteredTodos}
       />
     </div>
   )
