@@ -85,10 +85,23 @@ const TodoContainer = () => {
     return setSortDir("asc")
   }
 
+  // Filter todos
+  // if isFilter true then filter out completed todos
   const filteredTodos = useMemo(
     () => (isFiltered ? todos.filter(({ completed }) => !completed) : todos),
     [isFiltered, todos]
   )
+
+  // Sort
+  // sort todos based on sort direction
+  // compounded off of filtered todos
+  const sortedTodos = useMemo(() => {
+    return [...filteredTodos].sort((a, b) => {
+      if (sortDir === "asc") return a.title.localeCompare(b.title)
+      if (sortDir === "dsc") return b.title.localeCompare(a.title)
+      return 0
+    })
+  }, [sortDir, filteredTodos])
 
   return (
     <div className="container">
@@ -103,7 +116,7 @@ const TodoContainer = () => {
       <TodosList
         deleteTodoProps={delTodo}
         handleChangeProps={handleChange}
-        todos={filteredTodos}
+        todos={sortedTodos}
       />
     </div>
   )
