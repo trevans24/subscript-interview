@@ -21,12 +21,13 @@ const FilterSortBar = ({ handleFilter, handleSort, isFiltered, sortDir }) => {
   return (
     <div style={containerStyle}>
       <button
+        className="filter-btn"
         onClick={handleFilter}
         style={isFiltered ? activeStyle : btnStyle}
       >
         Filter Completed
       </button>
-      <button onClick={handleSort} style={btnStyle}>
+      <button className="sort-btn" onClick={handleSort} style={btnStyle}>
         Sort {sortDir}
       </button>
     </div>

@@ -53,4 +53,15 @@ describe("example to-do app", () => {
     // check and make sure there are 2 todos
     cy.wait(500).get(".todo-item").should("have.length", 2)
   })
+  it("should filter out completed todos", () => {
+    // make sure there are 3 todos
+    const todos = cy.get(".todo-item")
+    todos.should("have.length", 3)
+    // find filter button
+    const filterBtn = cy.get(".filter-btn")
+    // click filter button
+    filterBtn.click()
+    // check for 2 todos
+    cy.wait(500).get(".todo-item").should("have.length", 2)
+  })
 })
